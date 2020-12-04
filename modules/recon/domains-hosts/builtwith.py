@@ -18,11 +18,14 @@ class Module(BaseModule):
 
     def module_run(self, domains):
         key = self.keys.get('builtwith_api')
-        url = 'http://api.builtwith.com/v5/api.json'
+        # Maybe the commercial version?
+        #url = 'http://api.builtwith.com/v5/api.json'
+        # Free Version
+        url = 'https://api.builtwith.com/free1/api.json'
         title = 'BuiltWith contact'
         for domain in domains:
             self.heading(domain, level=0)
-            payload = {'key': key, 'lookup': domain}
+            payload = {'KEY': key, 'LOOKUP': domain}
             resp = self.request('GET', url, params=payload)
             if 'error' in resp.json():
                 self.error(resp.json()['error'])
